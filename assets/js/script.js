@@ -28,9 +28,6 @@ var answers = [];
 // dropdown menu control
 var partyIsOpen = false;
 
-// dropdown for party
-var dropdownIsOpen = false;
-
 // this function will be called if you press the start button
 function startQuestion(){
     // enables and disables the pages
@@ -107,41 +104,52 @@ function toggleDropdown(){
     }
 }
 
+// this function will generate all parties and their side
 function generateParties(){
     eensList.innerHTML = "";
     noneList.innerHTML = "";
     oneensList.innerHTML = "";
 
+    // loop through all parties in the subjects list
     for(var i = 0; i < subjects[index].parties.length; i++){
         var party = subjects[index].parties;
 
+        // if a party is for the current statement
         if(party[i].position == "pro"){
-            eensList.innerHTML += "<div class='party-dropdown-container' onclick='togglePartyDropdown();'><p class='party-container-partyname'>" + party[i].name + "</p>";
-            eensList.innerHTML += "<img id='party-dropdown-image' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
-            eensList.innerHTML += "<div id='party-dropdown' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
+            eensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party[i].name + "</p>";
+            eensList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
+            eensList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
         }
 
+        // if a party is neutral the current statement
         if(party[i].position == "ambivalent"){
-            noneList.innerHTML += "<div class='party-dropdown-container' onclick='togglePartyDropdown();'><p class='party-container-partyname'>" + party[i].name + "</p>";
-            noneList.innerHTML += "<img id='party-dropdown-image' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
-            noneList.innerHTML += "<div id='party-dropdown' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
+            noneList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party[i].name + "</p>";
+            noneList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
+            noneList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
         }
 
+        // if a party is against the current statement
         if(party[i].position == "contra"){
-            oneensList.innerHTML += "<div class='party-dropdown-container' onclick='togglePartyDropdown();'><p class='party-container-partyname'>" + party[i].name + "</p>";
-            oneensList.innerHTML += "<img id='party-dropdown-image' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
-            oneensList.innerHTML += "<div id='party-dropdown' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
+            oneensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party[i].name + "</p>";
+            oneensList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
+            oneensList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party[i].explanation + "</p></div></div>";
         }
     }
 }
 
-function togglePartyDropdown(){
-    var dropdownImg = document.getElementById('party-dropdown-image');
-    if(dropdownIsOpen == false){
-        dropdownImg.src = "assets/img/icon-cross.png";
-        dropdownIsOpen = true;
-    } else {
+// this function will hande the dropdown icon and information
+function togglePartyDropdown(i){
+    var dropdownImg = document.getElementById('party-dropdown-image' + i);
+    var partyStatement = document.getElementById('party-dropdown' + i);
+
+    // if the dropdown icon is the default icon. If not, then change the icon into a cross and show the information
+    if(dropdownImg.value == false){
         dropdownImg.src = "assets/img/icon-dropdown.svg";
-        dropdownIsOpen = false;
+        dropdownImg.value = true;
+        partyStatement.style.display = "none";
+    } else {
+        dropdownImg.src = "assets/img/icon-cross.png";
+        dropdownImg.value = false;
+        partyStatement.style.display = "block";
     }
 }

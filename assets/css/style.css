@@ -256,6 +256,12 @@ body {
 .question-container-buttons {
     position: absolute;
     top: 400px;
+    width: 700px;
+}
+
+.question-container-options {
+    position: absolute;
+    top: 460px;
 }
 
 .question-container-answer-button {
@@ -332,16 +338,15 @@ body {
 }
 
 .question-container-forum-button {
-    position: absolute;
     width: 50px;
     height: 50px;
     background-repeat: no-repeat;
     background-position: 50%;
     background-image: url(../img/icon-forum.svg);
     display: inline-block;
-    margin-top: 20px;
-    top: 127px;
-    left: -10px;
+    position: relative;
+    right: 280px;
+    top: 68px;
 }
 
 .question-container-forum-button:hover {
@@ -350,7 +355,6 @@ body {
 
 .question-container-party {
     display: block;
-    float: left;
     width: auto;
     background: white;
     font-weight: lighter;
@@ -359,9 +363,7 @@ body {
     font-size: 24px;
     margin-top: 1em;
     line-height: 24px;
-    position: relative;
-    top: 70px;
-    right: 225px;
+    padding-left: 40px;
 }
 
 .question-container-party:hover {
@@ -412,6 +414,10 @@ body {
 
 .party-container-dropdown {
     display: none;
+    width: 200px;
+    margin-bottom: 25px;
+    margin-top: -25px;
+    border-bottom: 1px solid #979797;
 }
 
 .party-dropdown-image {

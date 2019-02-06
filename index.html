@@ -136,16 +136,41 @@
         <div id="questionpage">
             <div class="w3-row">
                 <div class="question-container w3-threequarter w3-container w3-white w3-display-topmiddle w3-margin-top">
-                    <div class="question-container-progressbar"></div>
+                    <div id="progressbar" class="question-container-progressbar"></div>
                     <a id="backBtn" onclick="previousQuestion();"><div class="question-container-backarrow">
                     </div></a>
                     <div class="question-container-content">
                         <h1 id="question-container-topic"></h1>
                         <p id="question-container-information"></p>
-                        <button class="question-container-answer-button" onclick="nextQuestion('Eens');">Eens</button>
-                        <button class="question-container-answer-button" onclick="nextQuestion('Geen van beide');">Geen van beide</button>
-                        <button class="question-container-answer-button" onclick="nextQuestion('Oneens');">Oneens</button>
-                        <a class="question-container-skip-button" onclick="nextQuestion('');">Sla deze vraag over <span class="question-container-skip-arrow"></span></a>
+                        <div class="question-container-buttons">
+                            <button class="question-container-answer-button" onclick="nextQuestion('Eens');">Eens</button>
+                            <button class="question-container-answer-button" onclick="nextQuestion('Geen van beide');">Geen van beide</button>
+                            <button class="question-container-answer-button" onclick="nextQuestion('Oneens');">Oneens</button>
+                            <a class="question-container-skip-button" onclick="nextQuestion('');">Sla deze vraag over <span class="question-container-skip-arrow"></span></a>
+                            <span class="question-container-forum-button"></span><a class="question-container-party" onclick="toggleDropdown();"> Wat vinden de partijen?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="partypage">
+            <div class="w3-row">
+                <div class="party-container w3-threequarter w3-container w3-white w3-display-topmiddle">
+                    <div class="party-container-content">
+                        <div class="party-container-list">
+                            <div>
+                                <h6 class="party-container-titlelist">Eens</h6>
+                                <ul id="eensList"></ul>
+                            </div>
+                            <div>
+                                <h6 class="party-container-titlelist">Geen van beide</h6>
+                                <ul id="noneList"></ul>
+                            </div>
+                            <div>
+                                <h6 class="party-container-titlelist">Oneens</h6>
+                                <ul id="oneensList"></ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

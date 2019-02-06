@@ -222,6 +222,7 @@ body {
 
 .question-container {
     position: relative;
+    min-height: 650px;
 }
 
 .question-container-progressbar {
@@ -229,7 +230,7 @@ body {
     display: -ms-flexbox;
     display: flex;
     height: .5em;
-    width: 100%;
+    width: 8.3%;
     background-color: #01B4DC;
     left: 0;
 }
@@ -250,7 +251,11 @@ body {
     font-size: 33px;
     font-family: 'Arial';
     max-width: 800px;
-    margin-bottom: 3em;
+}
+
+.question-container-buttons {
+    position: absolute;
+    top: 400px;
 }
 
 .question-container-answer-button {
@@ -323,5 +328,103 @@ body {
 }
 
 .question-container-backarrow:hover {
+    cursor: pointer;
+}
+
+.question-container-forum-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url(../img/icon-forum.svg);
+    display: inline-block;
+    margin-top: 20px;
+    top: 127px;
+    left: -10px;
+}
+
+.question-container-forum-button:hover {
+    cursor: pointer;
+}
+
+.question-container-party {
+    display: block;
+    float: left;
+    width: auto;
+    background: white;
+    font-weight: lighter;
+    text-decoration: none;
+    outline: 0;
+    font-size: 24px;
+    margin-top: 1em;
+    line-height: 24px;
+    position: relative;
+    top: 70px;
+    right: 225px;
+}
+
+.question-container-party:hover {
+    cursor: pointer;
+}
+
+/* End Question page */
+
+#partypage {
+    display: none;
+    position: relative;
+    background-color: #f3f3f3;
+}
+
+.party-container-content {
+    padding: 0em 10% 4.5em;
+}
+
+#eensList, #noneList, #oneensList {
+    margin-top: 20px;
+}
+
+.party-container-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.party-container-titlelist {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    width: 200px;
+    margin: 0;
+}
+
+.party-container-partyname {
+    position: relative;
+    bottom: 10px;
+    z-index: 999;
+}
+
+.party-container-listitem {
+    position: relative;
+    list-style: none;
+    font-size: 14px;
+    padding-bottom: 0.75em;
+    border-bottom: 1px solid #979797;
+}
+
+.party-container-dropdown {
+    display: none;
+}
+
+.party-dropdown-image {
+    height: 10px;
+    position: relative;
+    bottom: 36px;
+    left: 187px;
+}
+
+.party-dropdown-container {
+    border-bottom: 1px solid #979797;
+}
+
+.party-dropdown-container:hover {
     cursor: pointer;
 }

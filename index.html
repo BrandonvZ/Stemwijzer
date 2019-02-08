@@ -137,8 +137,7 @@
             <div class="w3-row">
                 <div class="question-container w3-threequarter w3-container w3-white w3-display-topmiddle w3-margin-top">
                     <div id="progressbar" class="question-container-progressbar"></div>
-                    <a id="backBtn" onclick="PreviousQuestion();"><div class="question-container-backarrow">
-                    </div></a>
+                    <a id="backBtn" onclick="PreviousQuestion();"><div class="question-container-backarrow"></div></a>
                     <div class="question-container-content">
                         <h1 id="question-container-topic"></h1>
                         <p id="question-container-information"></p>
@@ -179,8 +178,49 @@
         </div>
         <div id="prioritypage">
             <div class="w3-row">
-                <div class="priority-container w3-threequarter w3-container w3-white w3-display-topmiddle">
-                    
+                <div class="priority-container w3-threequarter w3-container w3-white w3-display-topmiddle w3-margin-top">
+                    <div id="progressbar" class="question-container-progressbar" style="width: 100%;"></div>
+                    <a id="backBtn" onclick="PreviousQuestion();"><div class="question-container-backarrow"></div></a>
+                    <div class="priority-container-content">
+                        <h1 id="priority-container-topic">Zijn er onderwerpen die u extra belangrijk vindt?</h1>
+                        <p id="priority-container-information">Aangevinkte stellingen tellen extra mee bij het berekenen van het resulaat.</p>
+                        <button id="priorityNextButton" class="priority-next-button" onclick="ShowParties();">Ga verder</button>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="priority-topics-container w3-threequarter w3-container w3-display-bottommiddle">
+                    <div class="priority-topics-container-content">
+                        <h2 id="priority-topics-container-title">Extra belangrijke onderwerpen</h2>
+                        <div style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <ul id="priority-topics" class="priority-topics-content"></ul>
+                            <div id="priority-statement-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="partiespage">
+            <div class="w3-row">
+                <div class="parties-container w3-threequarter w3-container w3-white w3-display-topmiddle w3-margin-top">
+                    <div id="progressbar" class="question-container-progressbar" style="width: 100%;"></div>
+                    <a id="backBtn" onclick="ShowPriorityPage();"><div class="question-container-backarrow"></div></a>
+                    <div class="parties-container-content">
+                        <h2 id="parties-container-topic">Welke partijen wilt u meenemen in het resultaat?</h2>
+                        <p id="parties-container-information">U kunt kiezen voor zittende partijen, die nu in de Tweede Kamer vertegenwoordigd zijn. Daarbij nemen we ook de partijen mee die in de peilingen op minimaal één zetel staan. U kunt alle partijen meenemen en u kunt een eigen selectie maken van tenminste drie partijen.</p>
+                        <button id="partiesNextButton" class="parties-next-button" onclick="ShowResult();">Naar resultaat</button>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="parties-topics-container w3-threequarter w3-container w3-display-bottommiddle">
+                    <div class="parties-topics-container-content">
+                        <h2 id="parties-topics-container-title">Kies de partijen die u mee wilt nemen in het resultaat</h2>
+                        <div style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <ul id="parties-topics" class="parties-topics-content"></ul>
+                            <div id="parties-statement-container"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

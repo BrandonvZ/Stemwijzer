@@ -2,6 +2,8 @@
 const startPage = document.getElementById('startpage');
 const questionPage = document.getElementById('questionpage');
 const partyPage = document.getElementById('partypage');
+const priorityPage = document.getElementById('prioritypage');
+const partiesPage = document.getElementById('partiespage');
 
 // all buttons
 const startBtn = document.getElementById('startBtn');
@@ -18,6 +20,12 @@ var oneensList = document.getElementById('oneensList');
 // question title and information
 var questionTopic = document.getElementById('question-container-topic');
 var questionInformation = document.getElementById('question-container-information');
+
+// priority topics container
+var priorityTopics = document.getElementById('priority-topics');
+
+// parties topics container
+var partiesTopics = document.getElementById('parties-topics');
 
 // the progression bar
 var progressBar = document.getElementById('progressbar');
@@ -85,12 +93,14 @@ function NextQuestion(choice){
 
     // increases the progressbar and index, and gives the progressbar a transition effect
     progressBar.style.width = (100 / subjects.length * (index + 2)) + "%";
-    progressbar.style.transition = "all 0.2s";
+    progressBar.style.transition = "all 0.2s";
     index++;
 
     // if the user surpasses the last question. question page will disable and enables priority questions page. If not, then show question
     if(index >= subjects.length){
         questionPage.style.display = "none";
+        priorityPage.style.display = "block";
+        GenerateTopics();
         console.log(answers);
     } else {
         ShowQuestion();
@@ -99,17 +109,28 @@ function NextQuestion(choice){
 
 // this function will show the previous question
 function PreviousQuestion(){
-    // decreases the progressbar and index, and gives the progressbar a transition effect
-    progressBar.style.width = (100 / subjects.length * index) + "%";
-    progressbar.style.transition = "all 0.2s";
-    index--;
-
-    // if the user goes lower then the first question. question page will disable and enables start page. If not, then show question
-    if(index < 0){
-        startPage.style.display = "block";
-        questionPage.style.display = "none";
-    } else {
+    // if the user is on the priority page and presses to go back to the questions
+    if(index == subjects.length){
+        priorityPage.style.display = "none";
+        questionPage.style.display = "block";
+        progressBar.style.width = (100 / subjects.length * index) + "%";
+        progressBar.style.transition = "all 0.2s";
+        index--;
         ShowQuestion();
+    } else {
+
+        // decreases the progressbar and index, and gives the progressbar a transition effect
+        progressBar.style.width = (100 / subjects.length * index) + "%";
+        progressBar.style.transition = "all 0.2s";
+        index--;
+
+        // if the user goes lower then the first question. question page will disable and enables start page. If not, then show question
+        if(index < 0){
+            startPage.style.display = "block";
+            questionPage.style.display = "none";
+        } else {
+            ShowQuestion();
+        }
     }
 }
 
@@ -137,21 +158,21 @@ function GenerateParties(){
 
         // if a party is for the current statement
         if(party.position == "pro"){
-            eensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
+            eensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
             eensList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             eensList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
 
         // if a party is neutral the current statement
         if(party.position == "ambivalent"){
-            noneList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
+            noneList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
             noneList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             noneList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
 
         // if a party is against the current statement
         if(party.position == "contra"){
-            oneensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
+            oneensList.innerHTML += "<div class='party-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='party-container-partyname'>" + party.name + "</p>";
             oneensList.innerHTML += "<img id='party-dropdown-image" + i + "' value='false' class='party-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             oneensList.innerHTML += "<div id='party-dropdown" + i + "' class='party-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
@@ -172,5 +193,81 @@ function TogglePartyDropdown(i){
         dropdownImg.src = "assets/img/icon-cross.png";
         dropdownImg.value = false;
         partyStatement.style.display = "block";
+    }
+}
+
+// this function will generate all topics in the priority page
+function GenerateTopics(){
+    // loop through all question titles and statements
+    for(var i = 0; i < subjects.length; i++){
+        var topicTitle = subjects[i].title;
+        var topicStatement = subjects[i].statement;
+
+        // this will generate all titles and statements
+        priorityTopics.innerHTML += "<img id='priority-checkbox-image" + i + "' value='false' class='priority-dropdown-image' src='assets/img/icon-checkbox.svg'><label id='priority-checkbox" + i + "' class='priority-topic-checkbox' for='"+ topicTitle +"' type='checkbox' value='false' onclick='IsPriorityTopic("+ i +");'><span class='priority-topics-listitem'>" + topicTitle + "<div id='priority-statement' tooltip='" + topicStatement + "'><span class='priority-questionmark'></span></div></span></label>";
+    }
+}
+
+// this function will check whether you selected an important topic
+function IsPriorityTopic(i){
+    var priorityCheckbox = document.getElementById('priority-checkbox-image' + i);
+
+    // if the topic is not important then change to unimportant topic, if not then make it an important topic
+    if(priorityCheckbox.value == false){
+        priorityCheckbox.src = "assets/img/icon-checkbox.svg";
+        priorityCheckbox.value = true;
+        document.getElementsByClassName('priority-topics-listitem')[i].style.color = "black";
+        answers[i].priority = 0;
+    } else {
+        priorityCheckbox.src = "assets/img/icon-checkbox-checked.svg";
+        priorityCheckbox.value = false;
+        document.getElementsByClassName('priority-topics-listitem')[i].style.color = "#01B4DC";
+        answers[i].priority = 2;
+    }
+}
+
+// this function will disable the priority page and enable the parties page
+function ShowParties(){
+    priorityPage.style.display = "none";
+    partiesPage.style.display = "block";
+    console.log(answers);
+    GenerateAllParties();
+}
+
+GenerateAllParties();
+
+// this function will generate all parties at the last page before the result
+function GenerateAllParties(){
+    partiesTopics.innerHTML = "";
+
+    // loop through all question titles and statements
+    for(var i = 0; i < parties.length; i++){
+        var partyTitle = parties[i].name;
+        var partySeats = parties[i].size;
+
+        // this will generate all titles and statements
+        partiesTopics.innerHTML += "<img id='parties-checkbox-image" + i + "' value='false' class='parties-dropdown-image' src='assets/img/icon-checkbox.svg'><label id='parties-checkbox" + i + "' class='parties-topic-checkbox' for='"+ partyTitle +"' type='checkbox' value='false' onclick='IsPriorityParty("+ i +");'><span class='parties-topics-listitem'>" + partyTitle + " (" + partySeats + ")</span></label>";
+    }
+}
+
+function ShowPriorityPage(){
+    partiesPage.style.display = "none";
+    priorityPage.style.display = "block";
+    GenerateTopics();
+    console.log(answers);
+}
+
+function IsPriorityParty(i){
+    var partiesCheckbox = document.getElementById('parties-checkbox-image' + i);
+
+    // if the topic is not important then change to unimportant topic, if not then make it an important topic
+    if(partiesCheckbox.value == false){
+        partiesCheckbox.src = "assets/img/icon-checkbox.svg";
+        partiesCheckbox.value = true;
+        document.getElementsByClassName('parties-topics-listitem')[i].style.fontWeight = 'normal';
+    } else {
+        partiesCheckbox.src = "assets/img/icon-checkbox-checked.svg";
+        partiesCheckbox.value = false;
+        document.getElementsByClassName('parties-topics-listitem')[i].style.fontWeight = 'bold';
     }
 }

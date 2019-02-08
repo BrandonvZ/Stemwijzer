@@ -8,9 +8,11 @@ const partiesPage = document.getElementById('partiespage');
 // all buttons
 const startBtn = document.getElementById('startBtn');
 const backBtn = document.getElementById('backBtn');
-const eensBtn = document.getElementById("Eens");
-const noneBtn = document.getElementById("Geen van beide");
-const oneensBtn = document.getElementById("Oneens");
+const eensBtn = document.getElementById('Eens');
+const noneBtn = document.getElementById('Geen van beide');
+const oneensBtn = document.getElementById('Oneens');
+const bigPartyBtn = document.getElementById('parties-big-button');
+const secularPartyBtn = document.getElementById('parties-secular-button');
 
 // all party sides
 var eensList = document.getElementById('eensList');
@@ -198,6 +200,7 @@ function TogglePartyDropdown(i){
 
 // this function will generate all topics in the priority page
 function GenerateTopics(){
+    priorityTopics.innerHTML = "";
     // loop through all question titles and statements
     for(var i = 0; i < subjects.length; i++){
         var topicTitle = subjects[i].title;
@@ -234,8 +237,6 @@ function ShowParties(){
     GenerateAllParties();
 }
 
-GenerateAllParties();
-
 // this function will generate all parties at the last page before the result
 function GenerateAllParties(){
     partiesTopics.innerHTML = "";
@@ -247,6 +248,22 @@ function GenerateAllParties(){
 
         // this will generate all titles and statements
         partiesTopics.innerHTML += "<img id='parties-checkbox-image" + i + "' value='false' class='parties-dropdown-image' src='assets/img/icon-checkbox.svg'><label id='parties-checkbox" + i + "' class='parties-topic-checkbox' for='"+ partyTitle +"' type='checkbox' value='false' onclick='IsPriorityParty("+ i +");'><span class='parties-topics-listitem'>" + partyTitle + " (" + partySeats + ")</span></label>";
+    }
+}
+
+function SelectBigParties(){
+    for(var i = 0; i < parties.length; i++){
+        if(parties[i].size >= 14){
+            partiesTopics.getElementsByTagName('img')[i].src = "assets/img/icon-checkbox-checked.svg";
+            partiesTopics.getElementsByTagName('img')[i].value = "true";
+            partiesTopics.getElementsByTagName('label')[i].value = "true";
+            document.getElementsByClassName('parties-topics-listitem')[i].style.fontWeight = 'bold';
+        } else {
+            partiesTopics.getElementsByTagName('img')[i].src = "assets/img/icon-checkbox.svg";
+            partiesTopics.getElementsByTagName('img')[i].value = "false";
+            partiesTopics.getElementsByTagName('label')[i].value = "false";
+            document.getElementsByClassName('parties-topics-listitem')[i].style.fontWeight = 'normal';
+        }
     }
 }
 

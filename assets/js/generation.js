@@ -215,11 +215,30 @@ function GenerateTopics(){
     priorityTopic.innerHTML = "";
 
     // loop through all question titles and statements
-    for(var i = 0; i < subjects.length; i++){
+    for(var i = 0; i < subjects.length; i++) {
         var topicTitle = subjects[i].title;
         var topicStatement = subjects[i].statement;
 
         // this will generate all titles and statements
-        priorityTopic.innerHTML += "";
+        priorityTopic.innerHTML += "<input id='topic" + [i] + "' class='priority-checkbox' type='checkbox' onclick='IsPriorityTopic(" + i + ")'><p class='priority-title'>" + subjects[i].title +"</input>";
+    }
+}
+
+// this function will generate all parties at the last page before the result
+function GenerateAllParties(){
+
+    // get all parties on the party page
+    var partyList = document.getElementById('party-list');
+
+    // clears parties to make sure that the parties won't duplicate
+    partyList.innerHTML = "";
+
+    // loop through all party names and sizes
+    for(var i = 0; i < parties.length; i++){
+        var partyTitle = parties[i].name;
+        var partySeats = parties[i].size;
+
+        // this will generate all party names and sizes
+        partyList.innerHTML += "<input id='party" + i + "' class='party-checkbox' type='checkbox' onclick='IsPriorityParty(" + i + ")'><p class='party-title'>" + parties[i].name + " " + "(" + parties[i].size + ")" + "</p>";
     }
 }

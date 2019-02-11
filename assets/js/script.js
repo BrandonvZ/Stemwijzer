@@ -2,7 +2,7 @@
 const startPage = document.getElementById('start-page');
 const questionPage = document.getElementById('question-page');
 const priorityPage = document.getElementById('priority-page');
-const partiesPage = document.getElementById('parties-page');
+const partiesPage = document.getElementById('party-page');
 const resultPage = document.getElementById('result-page');
 
 // all buttons
@@ -181,4 +181,96 @@ function PreviousQuestion() {
             ShowQuestion();
         }
     }
+}
+
+// this function will check whether you selected an important topic
+function IsPriorityTopic(i){
+    var priorityCheckbox = document.getElementById('topic' + i);
+
+    // if the topic is not important then change to unimportant topic, if not then make it an important topic
+    if(!priorityCheckbox.checked){
+        document.getElementsByClassName('priority-title')[i].style.color = "black";
+        answers[i].priority = 0;
+    } else {
+        document.getElementsByClassName('priority-title')[i].style.color = "#01B4DC";
+        answers[i].priority = 2;
+    }
+}
+
+function ShowParties(){
+    priorityPage.style.display = "none";
+    partiesPage.style.display = "block";
+    GenerateAllParties();
+}
+
+// this function will check what party is considered big
+function SelectBigParties(){
+    var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
+
+    // loop through parties
+    for(var i = 0; i < parties.length; i++){
+        if(parties[i].size >= 14){
+            partiesCheckboxes[i].checked = true;
+            document.getElementsByClassName('party-title')[i].style.fontWeight = 'bold';
+        } else {
+            partiesCheckboxes[i].checked = false;
+            document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
+        }
+    }
+}
+
+// this function will check what party is considered secular
+function SelectSecularParties(){
+    var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
+
+    // loop through parties
+    for(var i = 0; i < parties.length; i++){
+        if(parties[i].secular == false){
+            partiesCheckboxes[i].checked = true;
+            document.getElementsByClassName('party-title')[i].style.fontWeight = 'bold';
+        } else {
+            partiesCheckboxes[i].checked = false;
+            document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
+        }
+    }
+}
+
+// this function will disable all parties if the user pressed the remove button
+function DisableParties(){
+    var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
+
+    // loop through parties
+    for(var i = 0; i < parties.length; i++){
+        if(parties[i].checked != false){
+            partiesCheckboxes[i].checked = false;
+            document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
+        }
+    }
+}
+
+// this function will check whether you selected an important party
+function IsPriorityParty(i){
+    var partiesCheckbox = document.getElementById('party' + i);
+
+    // if the topic is not important then change to unimportant topic, if not then make it an important topic
+    if(!partiesCheckbox.checked){
+        document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
+    } else {
+        document.getElementsByClassName('party-title')[i].style.fontWeight = 'bold';
+    }
+}
+
+// this function will show the result
+function ShowResult(){
+    var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
+
+    for(var i = 0; i < parties.length; i++){
+        if(partiesCheckboxes[i].checked){
+            console.log(parties[i].name);
+        }
+    }
+
+    partiesPage.style.display = "none";
+    resultPage.style.display = "block";
+
 }

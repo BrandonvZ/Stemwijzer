@@ -126,7 +126,7 @@
             <button id="question-back-button" onclick="PreviousQuestion();"><span class="question-backarrow"></span></button>
 
             <figure>
-                <h1 id="priority-statement">Zijn er onderwerpen die u extra belangrijk vindt?</h1>
+                <h1 class="priority-header">Zijn er onderwerpen die u extra belangrijk vindt?</h1>
 
                 <p class="priority-info">Aangevinkte stellingen tellen extra mee bij het berekenen van het resulaat.</p>
 
@@ -135,10 +135,48 @@
 
             <figure class="priority-parties">
                 <h2 class="priority-comment">Extra belangrijke onderwerpen</h2>
+                <div id="priority-statement"></div>
 
             </figure>
 
         </article>
+
+    </section>
+
+    <section id="party-page">
+
+        <article class="party-container container w3-margin-top">
+
+            <button id="question-back-button" onclick="PreviousQuestion();"><span class="question-backarrow"></span></button>
+
+            <figure>
+                <h1 class="party-header">Welke partijen wilt u meenemen in het resultaat?</h1>
+
+                <p class="party-info">U kunt kiezen voor zittende partijen, die nu in de Tweede Kamer vertegenwoordigd zijn. Daarbij nemen we ook de partijen mee die in de peilingen op minimaal één zetel staan. U kunt alle partijen meenemen en u kunt een eigen selectie maken van tenminste drie partijen.</p>
+
+                <button id="party-button" class="party-button btn" onclick="ShowResult();">Naar resultaat</button>
+            </figure>
+
+            <figure class="party-parties">
+                <h2 class="party-comment">Kies de partijen die u mee wilt nemen in het resultaat</h2>
+
+                <button class="parties-button" id="parties-big-button" onclick="SelectBigParties();">Selecteer grote partijen</button>
+                <button class="parties-button" id="parties-secular-button" onclick="SelectSecularParties();">Selecteer seculiere partijen</button>
+                <button class="parties-button" id="parties-remove-button" onclick="DisableParties();">Verwijder selectie</button>
+
+                <div id="party-list"></div>
+
+            </figure>
+
+        </article>
+
+    </section>
+
+    <section id="result-page">
+
+        <article>
+
+        </article>    
 
     </section>
 

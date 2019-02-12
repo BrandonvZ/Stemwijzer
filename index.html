@@ -165,7 +165,6 @@
                 <button class="parties-button" id="parties-remove-button" onclick="DisableParties();">Verwijder selectie</button>
 
                 <div id="party-list"></div>
-
             </figure>
 
         </article>
@@ -174,9 +173,23 @@
 
     <section id="result-page">
 
-        <article>
+        <article class="result-container container w3-margin-top">
 
-        </article>    
+            <figure>
+                <h1 class="result-header">Uw mening komt het best overeen met: <br /><span id="party-first-result"></span><h1>
+
+                <button class="result-button btn" id="result-big-button" onclick="BackToHome();">Terug naar home</button>
+            </figure>
+
+        </article>
+
+        <article class="result-lower-container container">
+
+            <figure>
+                <div id="result-other-parties"></div>
+            </figure>
+
+        </article>
 
     </section>
 

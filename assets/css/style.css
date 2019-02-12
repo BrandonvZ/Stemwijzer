@@ -5,6 +5,7 @@
     3. Question Page
     4. Priority Page
     5. Party Page
+    6. Result Page
 
 */
 
@@ -57,6 +58,7 @@ figure {
 
 #start-page {
     font-family: 'Arial';
+    /* display: none; */
 }
 
 .start-subject {
@@ -478,4 +480,33 @@ figure {
     text-decoration: none;
     font-size: 14px;
     margin: -1em 10px 2em 0;
+}
+
+/* 6. Result Page */
+
+#result-page {
+    position: relative;
+    display: none;
+}
+
+.result-container {
+    background-color: #E7EAEB;
+    padding: 4.5em 7.5% 5.5em !important;
+}
+
+.result-lower-container {
+
+}
+
+.result-header {
+    text-align: center;
+    font-family: 'Arial';
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#result-big-button {
+    min-height: 54px !important;
+    font-size: 21px !important;
+    float: right !important;
 }

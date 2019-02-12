@@ -37,6 +37,10 @@ var answers = [];
 // question party dropdown control
 var partyIsOpen = false;
 
+// result page
+var firstParty = document.getElementById('party-first-result');
+var otherParties = document.getElementById('result-other-parties');
+
 startComment.innerHTML = "Test uw politieke voorkeur aan de hand van " + subjects.length + " stellingen";
 
 
@@ -45,6 +49,9 @@ GenerateStartParties();
 
 // this function will handle if the user pressed the start button at the start page
 function StartQuestion() {
+
+    // if you want to try again, it will remove all answers
+    answers = [];
     // enables questionPage and disables startPage
     startPage.style.display = "none";
     questionPage.style.display = "block";
@@ -101,12 +108,12 @@ function ToggleQuestionDropdown() {
 }
 
 // this function will hande the dropdown icon and information for the selected party
-function TogglePartyDropdown(i){
+function TogglePartyDropdown(i) {
     var dropdownImg = document.getElementById('question-dropdown-image' + i);
     var questionPartyDropdown = document.getElementById('questionPartyDropdown' + i);
 
     // if the dropdown icon is the default icon. If not, then change the icon into a cross and show the information
-    if(dropdownImg.value == false){
+    if(dropdownImg.value == false) {
         dropdownImg.src = "assets/img/icon-dropdown.svg";
         dropdownImg.value = true;
         questionPartyDropdown.style.display = "none";
@@ -184,11 +191,11 @@ function PreviousQuestion() {
 }
 
 // this function will check whether you selected an important topic
-function IsPriorityTopic(i){
+function IsPriorityTopic(i) {
     var priorityCheckbox = document.getElementById('topic' + i);
 
     // if the topic is not important then change to unimportant topic, if not then make it an important topic
-    if(!priorityCheckbox.checked){
+    if(!priorityCheckbox.checked) {
         document.getElementsByClassName('priority-title')[i].style.color = "black";
         answers[i].priority = 0;
     } else {
@@ -197,14 +204,14 @@ function IsPriorityTopic(i){
     }
 }
 
-function ShowParties(){
+function ShowParties() {
     priorityPage.style.display = "none";
     partiesPage.style.display = "block";
     GenerateAllParties();
 }
 
 // this function will check what party is considered big
-function SelectBigParties(){
+function SelectBigParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
@@ -220,12 +227,12 @@ function SelectBigParties(){
 }
 
 // this function will check what party is considered secular
-function SelectSecularParties(){
+function SelectSecularParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
-    for(var i = 0; i < parties.length; i++){
-        if(parties[i].secular == false){
+    for(var i = 0; i < parties.length; i++) {
+        if(parties[i].secular != false){
             partiesCheckboxes[i].checked = true;
             document.getElementsByClassName('party-title')[i].style.fontWeight = 'bold';
         } else {
@@ -236,12 +243,12 @@ function SelectSecularParties(){
 }
 
 // this function will disable all parties if the user pressed the remove button
-function DisableParties(){
+function DisableParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
-    for(var i = 0; i < parties.length; i++){
-        if(parties[i].checked != false){
+    for(var i = 0; i < parties.length; i++) {
+        if(parties[i].checked != false) {
             partiesCheckboxes[i].checked = false;
             document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
         }
@@ -249,11 +256,11 @@ function DisableParties(){
 }
 
 // this function will check whether you selected an important party
-function IsPriorityParty(i){
+function IsPriorityParty(i) {
     var partiesCheckbox = document.getElementById('party' + i);
 
     // if the topic is not important then change to unimportant topic, if not then make it an important topic
-    if(!partiesCheckbox.checked){
+    if(!partiesCheckbox.checked) {
         document.getElementsByClassName('party-title')[i].style.fontWeight = 'normal';
     } else {
         document.getElementsByClassName('party-title')[i].style.fontWeight = 'bold';
@@ -261,16 +268,58 @@ function IsPriorityParty(i){
 }
 
 // this function will show the result
-function ShowResult(){
+function ShowResult() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
+    var results = [];
 
-    for(var i = 0; i < parties.length; i++){
-        if(partiesCheckboxes[i].checked){
-            console.log(parties[i].name);
+    // will set all selected parties on the priority page in a list
+    for(var r = 0; r < parties.length; r++) {
+        for(var i = 0; i < partiesCheckboxes.length; i++){
+            if(partiesCheckboxes[i].checked) {
+                if(parties[r].name == partiesCheckboxes[i].value) {
+                    results.push(parties[r]);
+                    results[results.length - 1].score = 0;
+                }
+            }
         }
     }
+
+    // will convert all answers and will add the score on whether you selected a checkbox in the priority page
+    for(var p = 0; p < results.length; p++){
+        for(var i = 0; i < answers.length; i++){
+            for(var r = 0; r < subjects[i].parties.length; r++){
+                var party = subjects[i].parties[r];
+                if(party.name == results[p].name){
+                    var convertedAnswer = answers[i].answer == "Eens" ? "pro": answers[i].answer == "Oneens" ? "contra": answers[i].answer == "Geen van beide" ? "ambivalent": "";
+                    if(convertedAnswer == party.position){
+                        if(answers[i].priority > 0){
+                            results[p].score += 2;
+                        } else {
+                            results[p].score += 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // this will sort the parties from high to low
+    results.sort(function(a, b){
+        return b.score - a.score;
+    });
+
+    // the party that is best for the user
+    firstParty.innerHTML = results[0].name + " (" + results[0].score + " punten)";
+
+    // will call GenerateOtherParties to show all other parties (function is in generation.js)
+    GenerateOtherParties(results);
 
     partiesPage.style.display = "none";
     resultPage.style.display = "block";
 
+}
+
+// this function will sent the user back to the home page
+function BackToHome(){
+    resultPage.style.display = "none";
 }

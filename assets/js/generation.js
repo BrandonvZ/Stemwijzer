@@ -239,6 +239,12 @@ function GenerateAllParties(){
         var partySeats = parties[i].size;
 
         // this will generate all party names and sizes
-        partyList.innerHTML += "<input id='party" + i + "' class='party-checkbox' type='checkbox' onclick='IsPriorityParty(" + i + ")'><p class='party-title'>" + parties[i].name + " " + "(" + parties[i].size + ")" + "</p>";
+        partyList.innerHTML += "<input id='party" + i + "' class='party-checkbox' type='checkbox' value='" + parties[i].name + "' onclick='IsPriorityParty(" + i + ")'><p class='party-title'>" + parties[i].name + " " + "(" + parties[i].size + ")" + "</p>";
+    }
+}
+
+function GenerateOtherParties(results){
+    for (var i = 1; i < results.length; i++) {
+        otherParties.innerHTML += results[i].name + " (" + results[i].score + " punten)<br />";
     }
 }

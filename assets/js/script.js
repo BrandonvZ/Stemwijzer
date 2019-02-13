@@ -45,10 +45,10 @@ startComment.innerHTML = "Test uw politieke voorkeur aan de hand van " + subject
 
 
 // this function will be called to generate all party circles at the start page (function is in generation.js)
-GenerateStartParties();
+generateStartParties();
 
 // this function will handle if the user pressed the start button at the start page
-function StartQuestion() {
+function startQuestion() {
 
     // if you want to try again, it will remove all answers
     answers = [];
@@ -61,11 +61,11 @@ function StartQuestion() {
 
     // resets the index to 0 and calls the ShowQuestion function
     index = 0;
-    ShowQuestion();
+    showQuestion();
 }
 
 // this function will handle the current data and already been answered questions
-function ShowQuestion() {
+function showQuestion() {
     // automatically closes question party dropdown
     questionPartyDropdown.style.display = "none";
     partyIsOpen = false;
@@ -88,11 +88,11 @@ function ShowQuestion() {
     questionInfo.innerHTML = subjects[index]['statement'];
 
     // will be called to generate all parties at the question page and display their side on the topic (function is in generation.js)
-    GenerateParties();
+    generateParties();
 }
 
 // this function will toggle the question parties dropdown
-function ToggleQuestionDropdown() {
+function toggleQuestionDropdown() {
     // if the dropdown is disabled and the user presses on the dropdown
     if(partyIsOpen == false) {
 
@@ -108,7 +108,7 @@ function ToggleQuestionDropdown() {
 }
 
 // this function will hande the dropdown icon and information for the selected party
-function TogglePartyDropdown(i) {
+function togglePartyDropdown(i) {
     var dropdownImg = document.getElementById('question-dropdown-image' + i);
     var questionPartyDropdown = document.getElementById('questionPartyDropdown' + i);
 
@@ -125,7 +125,7 @@ function TogglePartyDropdown(i) {
 }
 
 // this function will handle the user choice and next questions
-function NextQuestion(choice) {
+function nextQuestion(choice) {
     // handle question data into an object
     var list = {
         'title' : subjects[index].title,
@@ -149,19 +149,19 @@ function NextQuestion(choice) {
         priorityPage.style.display = "block";
 
         // will be called to generate all topics at the priority page and display their info (function is in generation.js)
-        GenerateTopics();
+        generateTopics();
 
         // temp console.log (WILL BE REMOVED IF DONE TESTING)
         console.log(answers);
     } else {
 
         // if the user didn't surpass the last question, call ShowQuestion
-        ShowQuestion();
+        showQuestion();
     }
 }
 
 // this function will handle and display the previous questions
-function PreviousQuestion() {
+function previousQuestion() {
     // if the user is on the priority page and presses on the back button
     if(index == subjects.length) {
 
@@ -172,7 +172,7 @@ function PreviousQuestion() {
         // decreases the progress, index and calls ShowQuestion
         progressBar.style.width = (100 / subjects.length * index) + "%";
         index--;
-        ShowQuestion();
+        showQuestion();
     } else {
 
         // decreases the progressbar and index
@@ -185,13 +185,13 @@ function PreviousQuestion() {
             startPage.style.display = "block";
             questionPage.style.display = "none";
         } else {
-            ShowQuestion();
+            showQuestion();
         }
     }
 }
 
 // this function will check whether you selected an important topic
-function IsPriorityTopic(i) {
+function isPriorityTopic(i) {
     var priorityCheckbox = document.getElementById('topic' + i);
 
     // if the topic is not important then change to unimportant topic, if not then make it an important topic
@@ -204,14 +204,14 @@ function IsPriorityTopic(i) {
     }
 }
 
-function ShowParties() {
+function showParties() {
     priorityPage.style.display = "none";
     partiesPage.style.display = "block";
-    GenerateAllParties();
+    generateAllParties();
 }
 
 // this function will check what party is considered big
-function SelectBigParties() {
+function selectBigParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
@@ -227,7 +227,7 @@ function SelectBigParties() {
 }
 
 // this function will check what party is considered secular
-function SelectSecularParties() {
+function selectSecularParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
@@ -243,7 +243,7 @@ function SelectSecularParties() {
 }
 
 // this function will disable all parties if the user pressed the remove button
-function DisableParties() {
+function disableParties() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
 
     // loop through parties
@@ -256,7 +256,7 @@ function DisableParties() {
 }
 
 // this function will check whether you selected an important party
-function IsPriorityParty(i) {
+function isPriorityParty(i) {
     var partiesCheckbox = document.getElementById('party' + i);
 
     // if the topic is not important then change to unimportant topic, if not then make it an important topic
@@ -268,7 +268,7 @@ function IsPriorityParty(i) {
 }
 
 // this function will show the result
-function ShowResult() {
+function showResult() {
     var partiesCheckboxes = document.getElementsByClassName('party-checkbox');
     var results = [];
 
@@ -312,7 +312,7 @@ function ShowResult() {
     firstParty.innerHTML = results[0].name + " (" + results[0].score + " punten)";
 
     // will call GenerateOtherParties to show all other parties (function is in generation.js)
-    GenerateOtherParties(results);
+    generateOtherParties(results);
 
     partiesPage.style.display = "none";
     resultPage.style.display = "block";
@@ -320,6 +320,7 @@ function ShowResult() {
 }
 
 // this function will sent the user back to the home page
-function BackToHome(){
+function backToHome(){
     resultPage.style.display = "none";
+    startPage.style.display = "block";
 }

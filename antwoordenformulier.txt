@@ -1,0 +1,12 @@
+Tegen welke problemen liep je aan tijdens het uitvoeren van de opdracht?
+- Het berekenen van de score, dat was in het begin best tricky. Maar het werkt nu en snap ook wat ik gedaan heb. 
+  Ik was halverwege ook opnieuw begonnen omdat mijn code er erg chaotisch uitzag en mij het beste leek om mijn code op een andere manier opnieuw te schrijven.
+
+Had je genoeg tijd voor de opdracht?
+- Ja.
+
+Vond je de opdracht te makkelijk of juist te moeilijk?
+- Niet te makkelijk, maar ook niet te moeilijk. Het is i.i.g. een goede opdracht voor na de stage.
+
+Link naar je GitHub repository
+- https://github.com/BrandonvZ/Stemwijzer

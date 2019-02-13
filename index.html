@@ -27,7 +27,7 @@
 
                 <h2 id="start-comment" class="start-comment"></h2>
 
-                <button id="start-button" class="btn start-button" type="button" name="startButton" onclick="StartQuestion();">Start</button>
+                <button id="start-button" class="btn start-button" type="button" name="startButton" onclick="startQuestion();">Start</button>
 
                 <a class="start-subcomments start-xsable">Bekijk de toegankelijke versie voor mensen met een visuele beperking</a>
                 <a class="start-subcomments start-privacy">De StemWijzer maakt geen gebruik van cookies. Klik hier voor de volledige privacy statement</a>
@@ -76,20 +76,20 @@
         <article class="question-container container">
 
             <div id="progress-bar" class="progress-bar"></div>
-            <button id="question-back-button" onclick="PreviousQuestion();"><span class="question-backarrow"></span></button>
+            <button id="question-back-button" onclick="previousQuestion();"><span class="question-backarrow"></span></button>
 
             <figure>
                 <h1 id="question-statement"></h1>
                 <p id="question-description"></p>
 
-                <button id="Eens" class="question-buttons btn" onclick="NextQuestion('Eens');">Eens</button>
-                <button id="Geen van beide" class="question-buttons btn" onclick="NextQuestion('Geen van beide');">Geen van beide</button>
-                <button id="Oneens" class="question-buttons btn" onclick="NextQuestion('Oneens');">Oneens</button>
-                <button class="question-skip-button" onclick="NextQuestion('');">Sla deze vraag over <span class="question-skip-arrow"></span></button>
+                <button id="Eens" class="question-buttons btn" onclick="nextQuestion('Eens');">Eens</button>
+                <button id="Geen van beide" class="question-buttons btn" onclick="nextQuestion('Geen van beide');">Geen van beide</button>
+                <button id="Oneens" class="question-buttons btn" onclick="nextQuestion('Oneens');">Oneens</button>
+                <button class="question-skip-button" onclick="nextQuestion('');">Sla deze vraag over <span class="question-skip-arrow"></span></button>
 
                 <br />
 
-                <span onclick="ToggleQuestionDropdown();"><a class="question-forum-logo"></a><a class="question-dropdown-text"> Wat vinden de partijen?</a></span>
+                <span onclick="toggleQuestionDropdown();"><a class="question-forum-logo"></a><a class="question-dropdown-text"> Wat vinden de partijen?</a></span>
             </figure>
 
             <figure id="questionPartyDropdown">
@@ -123,14 +123,14 @@
 
         <article class="priority-container container w3-margin-top">
 
-            <button id="question-back-button" onclick="PreviousQuestion();"><span class="question-backarrow"></span></button>
+            <button id="question-back-button" onclick="previousQuestion();"><span class="question-backarrow"></span></button>
 
             <figure>
                 <h1 class="priority-header">Zijn er onderwerpen die u extra belangrijk vindt?</h1>
 
                 <p class="priority-info">Aangevinkte stellingen tellen extra mee bij het berekenen van het resulaat.</p>
 
-                <button id="priority-button" class="priority-button btn" onclick="ShowParties();">Ga verder</button>
+                <button id="priority-button" class="priority-button btn" onclick="showParties();">Ga verder</button>
             </figure>
 
             <figure class="priority-parties">
@@ -147,22 +147,22 @@
 
         <article class="party-container container w3-margin-top">
 
-            <button id="question-back-button" onclick="PreviousQuestion();"><span class="question-backarrow"></span></button>
+            <button id="question-back-button" onclick="previousQuestion();"><span class="question-backarrow"></span></button>
 
             <figure>
                 <h1 class="party-header">Welke partijen wilt u meenemen in het resultaat?</h1>
 
                 <p class="party-info">U kunt kiezen voor zittende partijen, die nu in de Tweede Kamer vertegenwoordigd zijn. Daarbij nemen we ook de partijen mee die in de peilingen op minimaal één zetel staan. U kunt alle partijen meenemen en u kunt een eigen selectie maken van tenminste drie partijen.</p>
 
-                <button id="party-button" class="party-button btn" onclick="ShowResult();">Naar resultaat</button>
+                <button id="party-button" class="party-button btn" onclick="showResult();">Naar resultaat</button>
             </figure>
 
             <figure class="party-parties">
                 <h2 class="party-comment">Kies de partijen die u mee wilt nemen in het resultaat</h2>
 
-                <button class="parties-button" id="parties-big-button" onclick="SelectBigParties();">Selecteer grote partijen</button>
-                <button class="parties-button" id="parties-secular-button" onclick="SelectSecularParties();">Selecteer seculiere partijen</button>
-                <button class="parties-button" id="parties-remove-button" onclick="DisableParties();">Verwijder selectie</button>
+                <button class="parties-button" id="parties-big-button" onclick="selectBigParties();">Selecteer grote partijen</button>
+                <button class="parties-button" id="parties-secular-button" onclick="selectSecularParties();">Selecteer seculiere partijen</button>
+                <button class="parties-button" id="parties-remove-button" onclick="disableParties();">Verwijder selectie</button>
 
                 <div id="party-list"></div>
             </figure>
@@ -178,7 +178,7 @@
             <figure>
                 <h1 class="result-header">Uw mening komt het best overeen met: <br /><span id="party-first-result"></span><h1>
 
-                <button class="result-button btn" id="result-big-button" onclick="BackToHome();">Terug naar home</button>
+                <button class="result-button btn" id="result-big-button" onclick="backToHome();">Terug naar home</button>
             </figure>
 
         </article>

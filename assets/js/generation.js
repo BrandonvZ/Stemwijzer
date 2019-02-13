@@ -1,5 +1,5 @@
 // this function will generate every party at the home page
-function GenerateStartParties() {
+function generateStartParties() {
 
     // put every party and its information in an array with objects
     var startParties = [{
@@ -165,7 +165,7 @@ function GenerateStartParties() {
 }
 
 // this function will generate all parties and their side
-function GenerateParties(){
+function generateParties(){
 
     // get all sides on the question page
     var eensList = document.getElementById('eens-list');
@@ -183,21 +183,21 @@ function GenerateParties(){
 
         // if a party is for the current statement
         if(party.position == "pro"){
-            eensList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
+            eensList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
             eensList.innerHTML += "<img id='question-dropdown-image" + i + "' value='false' class='question-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             eensList.innerHTML += "<div id='questionPartyDropdown" + i + "' class='question-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
 
         // if a party is neutral the current statement
         if(party.position == "ambivalent"){
-            noneList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
+            noneList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
             noneList.innerHTML += "<img id='question-dropdown-image" + i + "' value='false' class='question-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             noneList.innerHTML += "<div id='questionPartyDropdown" + i + "' class='question-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
 
         // if a party is against the current statement
         if(party.position == "contra"){
-            oneensList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='TogglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
+            oneensList.innerHTML += "<div class='question-dropdown-container" + i + "' onclick='togglePartyDropdown(" + i + ");'><p class='question-party-name'>" + party.name + "</p>";
             oneensList.innerHTML += "<img id='question-dropdown-image" + i + "' value='false' class='question-dropdown-image' src='assets/img/icon-dropdown.svg'>";
             oneensList.innerHTML += "<div id='questionPartyDropdown" + i + "' class='question-container-dropdown'><p>" + party.explanation + "</p></div></div>";
         }
@@ -206,7 +206,7 @@ function GenerateParties(){
 
 
 // this function will generate all topics in the priority page
-function GenerateTopics(){
+function generateTopics(){
 
     // get all topics on the priority page
     var priorityTopic = document.getElementById('priority-statement');
@@ -220,12 +220,12 @@ function GenerateTopics(){
         var topicStatement = subjects[i].statement;
 
         // this will generate all titles and statements
-        priorityTopic.innerHTML += "<input id='topic" + [i] + "' class='priority-checkbox' type='checkbox' onclick='IsPriorityTopic(" + i + ")'><p class='priority-title'>" + subjects[i].title +"</input>";
+        priorityTopic.innerHTML += "<input id='topic" + [i] + "' class='priority-checkbox' type='checkbox' onclick='isPriorityTopic(" + i + ")'><p class='priority-title'>" + subjects[i].title +"</input>";
     }
 }
 
 // this function will generate all parties at the last page before the result
-function GenerateAllParties(){
+function generateAllParties(){
 
     // get all parties on the party page
     var partyList = document.getElementById('party-list');
@@ -239,11 +239,11 @@ function GenerateAllParties(){
         var partySeats = parties[i].size;
 
         // this will generate all party names and sizes
-        partyList.innerHTML += "<input id='party" + i + "' class='party-checkbox' type='checkbox' value='" + parties[i].name + "' onclick='IsPriorityParty(" + i + ")'><p class='party-title'>" + parties[i].name + " " + "(" + parties[i].size + ")" + "</p>";
+        partyList.innerHTML += "<input id='party" + i + "' class='party-checkbox' type='checkbox' value='" + parties[i].name + "' onclick='isPriorityParty(" + i + ")'><p class='party-title'>" + parties[i].name + " " + "(" + parties[i].size + ")" + "</p>";
     }
 }
 
-function GenerateOtherParties(results){
+function generateOtherParties(results){
     for (var i = 1; i < results.length; i++) {
         otherParties.innerHTML += results[i].name + " (" + results[i].score + " punten)<br />";
     }
